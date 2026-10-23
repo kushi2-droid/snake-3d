@@ -1,0 +1,19 @@
+{
+  "name": "snake-3d",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SNAKE 3D — RETRO REIMAGINED: A complete 3D arcade Snake game built with Three.js, HTML5, CSS3, and Web Audio API.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node test-logic.js"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
