@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>SNAKE 3D — RETRO REIMAGINED</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script type="module" crossorigin src="./assets/index-D7iMoJC1.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CTAs6SQl.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Three.js 3D Arena Mount Point -->
+      <div id="canvas-container" aria-label="3D Snake Arena"></div>
+
+      <!-- Subtle Impact Flash Overlay -->
+      <div id="flash-overlay"></div>
+
+      <!-- Top HUD Bar (Visible in Ready / Playing / Paused states) -->
+      <header id="hud-bar" class="hud-bar hidden">
+        <div class="hud-stats">
+          <div class="stat-item">
+            <span class="stat-label">Score</span>
+            <span id="hud-score" class="stat-value accent">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Best</span>
+            <span id="hud-best" class="stat-value">0</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Mode</span>
+            <span id="hud-difficulty" class="stat-value">Normal</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Speed</span>
+            <span id="hud-speed" class="stat-value">Lv.1</span>
+          </div>
+        </div>
+        <div class="hud-actions">
+          <button id="btn-hud-pause" type="button" class="btn-hud">Pause</button>
+          <button id="btn-hud-restart" type="button" class="btn-hud">Restart</button>
+          <button id="btn-hud-mute" type="button" class="btn-hud" aria-pressed="true">Sound: ON</button>
+        </div>
+      </header>
+
+      <!-- MAIN MENU STATE -->
+      <section id="menu-overlay" class="overlay">
+        <div class="modal-card">
+          <h1 class="game-title">SNAKE 3D</h1>
+          <p class="game-subtitle">RETRO REIMAGINED</p>
+
+          <div class="menu-best-box">
+            <span>BEST SCORE</span>
+            <strong id="menu-best-score">0</strong>
+          </div>
+
+          <p class="section-label">Select Difficulty</p>
+          <div class="difficulty-group" role="group" aria-label="Difficulty Selection">
+            <button type="button" class="diff-btn" data-difficulty="EASY">Easy</button>
+            <button type="button" class="diff-btn active" data-difficulty="NORMAL">Normal</button>
+            <button type="button" class="diff-btn" data-difficulty="HARD">Hard</button>
+          </div>
+
+          <button id="btn-play" type="button" class="btn-primary">Play Game</button>
+          <button id="btn-menu-mute" type="button" class="btn-secondary" aria-pressed="true">Sound: ON</button>
+
+          <div class="controls-guide">
+            <div class="control-row">
+              <span>Move</span>
+              <span class="key-badge">Arrows / WASD</span>
+            </div>
+            <div class="control-row">
+              <span>Pause</span>
+              <span class="key-badge">Space / Esc</span>
+            </div>
+            <div class="control-row">
+              <span>Start / Retry</span>
+              <span class="key-badge">Enter</span>
+            </div>
+            <div class="control-row">
+              <span>Mobile</span>
+              <span class="key-badge">On-Screen D-Pad</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- READY STATE OVERLAY -->
+      <section id="ready-overlay" class="overlay ready-banner hidden">
+        <div class="ready-pill">
+          <h2>GET READY</h2>
+          <p>Press any direction key or wait to launch</p>
+        </div>
+      </section>
+
+      <!-- PAUSE STATE MENU -->
+      <section id="pause-overlay" class="overlay hidden">
+        <div class="modal-card">
+          <h2 class="game-title">PAUSED</h2>
+          <p class="game-subtitle">ARENA FROZEN</p>
+          <button id="btn-resume" type="button" class="btn-primary">Resume</button>
+          <button id="btn-pause-restart" type="button" class="btn-secondary">Restart</button>
+          <button id="btn-pause-menu" type="button" class="btn-secondary">Main Menu</button>
+        </div>
+      </section>
+
+      <!-- GAME OVER STATE SCREEN -->
+      <section id="gameover-overlay" class="overlay hidden">
+        <div class="modal-card">
+          <h2 class="game-title">GAME OVER</h2>
+          <p id="gameover-reason" class="gameover-reason">Boundary Wall Impact</p>
+          <div id="new-record-badge" class="new-record-badge hidden">NEW HIGH SCORE</div>
+
+          <div class="score-summary-grid">
+            <div class="score-box">
+              <div class="label">Final Score</div>
+              <div id="final-score" class="val">0</div>
+            </div>
+            <div class="score-box">
+              <div class="label">Best Score</div>
+              <div id="final-best-score" class="val">0</div>
+            </div>
+          </div>
+
+          <button id="btn-gameover-restart" type="button" class="btn-primary">Restart</button>
+          <button id="btn-gameover-menu" type="button" class="btn-secondary">Main Menu</button>
+        </div>
+      </section>
+
+      <!-- MOBILE ON-SCREEN DIRECTIONAL PAD -->
+      <nav id="mobile-controls" class="mobile-controls hidden" aria-label="Directional Controls">
+        <div class="dpad-grid">
+          <button id="dpad-up" type="button" class="dpad-btn dpad-up" aria-label="Move Up">&#9650;</button>
+          <button id="dpad-left" type="button" class="dpad-btn dpad-left" aria-label="Move Left">&#9664;</button>
+          <button id="dpad-down" type="button" class="dpad-btn dpad-down" aria-label="Move Down">&#9660;</button>
+          <button id="dpad-right" type="button" class="dpad-btn dpad-right" aria-label="Move Right">&#9654;</button>
+        </div>
+      </nav>
+    </div>
+
+  </body>
+</html>
